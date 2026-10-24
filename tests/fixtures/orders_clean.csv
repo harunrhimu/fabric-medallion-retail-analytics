@@ -1,0 +1,6 @@
+order_id,customer_id,order_status,order_purchase_timestamp
+o_0001,c_0001,delivered,2017-08-10 12:00:00
+o_0002,c_0002,shipped,2017-09-01 09:30:00
+o_0003,c_0001,delivered,2018-01-15 18:45:00
+o_0004,c_0003,canceled,2016-11-20 08:00:00
+o_0005,c_0004,delivered,2018-06-30 22:10:00

@@ -1,0 +1,39 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+
+      - name: Install tooling
+        run: pip install -r requirements-dev.txt
+
+      - name: Lint Python (ruff)
+        run: ruff check .
+
+      - name: Lint SQL (sqlfluff)
+        run: sqlfluff lint sql
+
+      - name: Data-quality tests (pytest)
+        run: pytest
+
+      - name: Validate TMDL (semantic model)
+        run: python scripts/validate_tmdl.py
+
+      - name: Secret scan (gitleaks)
+        uses: gitleaks/gitleaks-action@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

@@ -1,0 +1,25 @@
+# Datasets are never committed — regenerate locally with scripts/seed_data.py
+data/*
+!data/README.md
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.pytest_cache/
+.ruff_cache/
+*.egg-info/
+
+# Local tooling / secrets
+.env
+.vscode/
+.idea/
+
+# Power BI: PBIP/PBIR sources are committed, binaries are not
+*.pbix
+*.pbit
+
+# OS
+.DS_Store
+Thumbs.db
